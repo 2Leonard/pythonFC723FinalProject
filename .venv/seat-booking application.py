@@ -1,3 +1,7 @@
+import random
+import string
+
+
 class SeatBooking:
     def __init__(self):
         # Initialize the seating plan with the seat numbers and initial state
@@ -6,6 +10,18 @@ class SeatBooking:
             "2A": "X", "2B": "F", "2C": "F", "2D": "X", "2E": "S", "2F": "S",
             "3A": "F", "3B": "R", "3C": "F", "3D": "R", "3E": "F", "3F": "F",
         }
+        # Keep track of all booking references
+        self.booking_references = set()
+        # Store customer data referred to each booking reference
+        self.customer_data = {}
+
+    # Define a method to generate 8-character unique reference
+    def generate_unique_reference(self):
+        while True:
+            reference = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+            if reference not in self.booking_references:
+                self.booking_references.add(reference)
+                return reference
 
     # Define a method to check the availability of a seat
     def check_availability(self, seat):
