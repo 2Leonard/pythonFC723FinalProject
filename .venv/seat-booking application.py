@@ -18,9 +18,13 @@ class SeatBooking:
     # Define a method to generate 8-character unique reference
     def generate_unique_reference(self):
         while True:
+            # Generate a unique booking reference of 8 characters
             reference = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+            # Check if the reference is not used
             if reference not in self.booking_references:
+                # Add the reference to the set of booking references
                 self.booking_references.add(reference)
+                # Return the reference
                 return reference
 
     # Define a method to check the availability of a seat
